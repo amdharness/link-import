@@ -10,7 +10,6 @@ in AMD dependencies list and implementation of WebComponent via AMD define()
 The code sniplet for AMD configuration sample from HTML page which uses 
 Vaadin & Polymer Elements and custom  **af-branches** WebComponent
 ```html
-
     <script src="../bower_components/marked/marked.min.js"  ></script>
     <script>
         let useCDN = location.href.includes('usecdn')
@@ -41,7 +40,6 @@ require([   "webcomponentsjs/webcomponents-lite"
         ,   "link-import!../af-branches.html"
         ], (a,b,c,d)=> console.log(` ${a} ${b} ${c} ${d}`) );
     </script>
-
 ```
 
 The **af-branches** WebComponent is using AMD define():
@@ -55,16 +53,8 @@ The **af-branches** WebComponent is using AMD define():
                                 ,   "link-import!vaadin-combo-box/vaadin-combo-box.html"
                                 ],(polymerElement)=>
         {
-
-            /**
-             * `af-branches`
-             * Version control Branches selector out of Implementation namespace headers of ApiFusion git source import mediawiki page
-             *
-             * @customElement
-             * @polymer
-             * @demo demo/index.html
-             */
-            class AfBranches extends Polymer.Element
+                class 
+            AfBranches extends Polymer.Element
             {
                 static get is() { return 'af-branches'; }
                 ...
@@ -76,10 +66,99 @@ The **af-branches** WebComponent is using AMD define():
         require(['af-branches']);
     </script>
 </dom-module>
-
 ```
 The require() which immediately follows define() is needed to enforce WebComponent registration.
 
+# Why AMD for WebComponent?
+AMD is a module loader which allows to switch module location just by config and 
+does not require any transpilation. I.e. you will be working in browser without any 
+source mapping making it a IDE for editing and debugging on native level.
+
+Why not alternatives?
+* **ES6 class imports**  does not have configuration for switching the 
+path to dependencies. 
+* **Transpiling** is the way around missing config API in ES6 was found in transpiling 
+the source with substitution imports strings or even switching the sorce to 
+runtime loader like AMD or System JS.
+
+In all work arounds the sources are moved into compiled bundle or generated in 
+runtime, leaving developer to deal with extra complexity of mapping to original 
+sources. 
+
+Unlike work arounds AMD stands for KISS principle during developemnt, still permitting the transpiling 
+and bundling options. With HTTP2 and gzip compressing by web server the bundling is 
+not actual anymore. 
+
+About `stripping comments` in source. The author's opinion the code should be readable
+by developer and structured in a way to make comments unnecessary. The complimentary 
+comments and docs should be served in project documentation like this one rather 
+embedded into code.
+ 
+There are some solutions which allow to outsource the documentation to wiki like ApiFusion. 
+The source parsing and IDE integration are in progress there.    
+ 
+
+# Plugin use
+ ## setup
+ There is only one file `link-import.js` you need. 
+ You could pull it from NPM or simply copy from github into your project. 
+ Then use as dependency prefix. For example the following link
+ ```html
+      <link rel="import" href="/components/polymer/polymer-element.html">  
+```
+looks like `"node_modules/link-import/link-import!/components/polymer/polymer-element.html"`  
+ 
+Since it is too verbose it is advised to make an alias 
+in AMD config `aliases:  [ [ "link-import"  , "af/ui/AMD/link-import" ]...`
+to shorten it to `"link-import!/components/polymer/polymer-element.html"` 
+further aliasing and package definitions will allow to trim the dependency string 
+to bare minimum `"link-import!polymer/polymer-element.html"` (see config sample in intro)
+ 
+## `|whenDefined` parameter
+The `link-import!` prefix is resolved when `link` node `onload` event is fired. 
+The WebComponent HTML loading is not necessary a final stage as AMD could be still 
+in loading progress. To assure the WebComponent is completely ready to use, append 
+`|whenDefined` to its URL: 
+`"link-import!/components/apifusion/af-branches.html!whenDefined"`
+
+As `af-branches` is implemented with AMD, it will wait for dependencies resolving 
+and registering WebComponent, finally notifying the browser page over 
+`window.customElements.whenDefined` callback. `!whenDefined` suffix will resolve 
+the module on this event.    
+
+# live demo 
+ * `af-branches` web component demo page(TBD)
+ * This project `test-component` demo page on CDN (TBD) 
+ 
+# Compatibility
+ * For now it is tested against Dojo Toolkit 1.x AMD loader.
+ * RequireJS seems does not support the named define() in SCRIPT tag resulting 
+ in not invoking the callback, i.e. web component defined in HTML via 
+ RequireJS define implementation will not be instantiated. 
+ Absence of errors and console warnings preventing discover the cause. 
+ We are looking for help in following the issue and fix for RequireJS. 
+ * Please **create the ticket** if your AMD environment does not support define() 
+ in HTML script section. Or **upvote** if ticket already created in "add reaction" 
+ smile button next to ticket title.
+ * IE does not support ES6 syntax which this plugin is written in.     
+  
+# test
+## manual test
+Oen `test/demo/index.html` and open in browser
+( IntelliJ IDEA allows to "open in browser" opened html, ALT-F2 on Windows)
+
+## Test Automation
+* Smoke test: `npm test`
+
+* Multi-browser test. Prepare project and run test by 
+* npm install
+* cd test
+* bower install
+* polymer test
+
+Keep in mind the `polymer test` by default will run the test on all registered 
+browsers in your OS. `-l` key allows to define the browser to test against.
+  
 
 
 [npm-image]:      https://img.shields.io/npm/v/link-import.svg
