@@ -4,8 +4,8 @@
 [![NPM version][npm-image]][npm-url]
 
 
-`link-import!` AMD plugin for loading WebComponents locally and over CDN 
-in AMD dependencies list and implementation of WebComponent via AMD define() 
+`link-import!` AMD plugin for loading any WebComponents locally or over CDN 
+as AMD dependencies list and implementation of WebComponent via AMD define() 
 
 The code sniplet for AMD configuration sample from HTML page which uses 
 Vaadin & Polymer Elements and custom  **af-branches** WebComponent:
@@ -110,10 +110,15 @@ The source parsing and IDE integration are in progress there.
 looks like `"node_modules/link-import/link-import!/components/polymer/polymer-element.html"`  
  
 Since it is too verbose it is advised to make an alias 
-in AMD config `aliases:  [ [ "link-import"  , "af/ui/AMD/link-import" ]...`
-to shorten it to `"link-import!/components/polymer/polymer-element.html"` 
-further aliasing and package definitions will allow to trim the dependency string 
-to bare minimum `"link-import!polymer/polymer-element.html"` (see config sample in intro)
+in AMD config 
+
+`aliases:  [ [ "link-import"  , "af/ui/AMD/link-import" ]...`
+
+which  shorten it to `"link-import!/components/polymer/polymer-element.html"`
+ 
+Further aliasing and package definitions will allow to trim the dependency string 
+to bare minimum `"link-import!polymer/polymer-element.html"` 
+(see config sample in intro)
  
 ## `|whenDefined` parameter
 The `link-import!` prefix is resolved when `link` node `onload` event is fired. 
