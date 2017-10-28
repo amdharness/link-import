@@ -4,11 +4,11 @@
 [![NPM version][npm-image]][npm-url]
 
 
-link-import! AMD plugin for loading WebComponents locally and over CDN 
+`link-import!` AMD plugin for loading WebComponents locally and over CDN 
 in AMD dependencies list and implementation of WebComponent via AMD define() 
 
 The code sniplet for AMD configuration sample from HTML page which uses 
-Vaadin & Polymer Elements and custom  **af-branches** WebComponent
+Vaadin & Polymer Elements and custom  **af-branches** WebComponent:
 ```html
     <script src="../bower_components/marked/marked.min.js"  ></script>
     <script>
@@ -77,31 +77,32 @@ source mapping making it a IDE for editing and debugging on native level.
 Why not alternatives?
 * **ES6 class imports**  does not have configuration for switching the 
 path to dependencies. 
-* **Transpiling** is the way around missing config API in ES6 was found in transpiling 
-the source with substitution imports strings or even switching the sorce to 
-runtime loader like AMD or System JS.
+* **Transpiling** is the way around missing config API in ES6, It is
+the source substitution on imports strings or even switching the source to 
+runtime loader like AMD or System JS. WebPack, bower, etc are the samples.
 
-In all work arounds the sources are moved into compiled bundle or generated in 
+In all work around the sources are moved into compiled bundle or generated in 
 runtime, leaving developer to deal with extra complexity of mapping to original 
 sources. 
 
-Unlike work arounds AMD stands for KISS principle during developemnt, still permitting the transpiling 
-and bundling options. With HTTP2 and gzip compressing by web server the bundling is 
-not actual anymore. 
+Unlike work around AMD stands for KISS principle during development, still permitting 
+the transpiling and bundling options. With HTTP2 and gzip compressing by web server 
+the bundling is not actual anymore. 
 
 About `stripping comments` in source. The author's opinion the code should be readable
 by developer and structured in a way to make comments unnecessary. The complimentary 
 comments and docs should be served in project documentation like this one rather 
 embedded into code.
  
-There are some solutions which allow to outsource the documentation to wiki like ApiFusion. 
+There are some solutions which allow to outsource the documentation to wiki like 
+[ApiFusion](https://www.apifusion.com/wiki/index.php/AmdHarness.org/Sources/link-import). 
 The source parsing and IDE integration are in progress there.    
  
 
 # Plugin use
  ## setup
  There is only one file `link-import.js` you need. 
- You could pull it from NPM or simply copy from github into your project. 
+ You could pull it from NPM by `npm install --save link-import` or simply copy from github into your project. 
  Then use as dependency prefix. For example the following link
  ```html
       <link rel="import" href="/components/polymer/polymer-element.html">  
@@ -126,6 +127,9 @@ and registering WebComponent, finally notifying the browser page over
 `window.customElements.whenDefined` callback. `!whenDefined` suffix will resolve 
 the module on this event.    
 
+## AMD resolved value 
+The module returns the tag name guessed out of HTML name. 
+
 # live demo 
  * `af-branches` web component demo page(TBD)
  * This project `test-component` demo page on CDN (TBD) 
@@ -148,16 +152,20 @@ Oen `test/demo/index.html` and open in browser
 ( IntelliJ IDEA allows to "open in browser" opened html, ALT-F2 on Windows)
 
 ## Test Automation
-* Smoke test: `npm test`
+Smoke test: 
+* `npm test`
 
-* Multi-browser test. Prepare project and run test by 
-* npm install
-* cd test
-* bower install
-* polymer test
+Multi-browser test. Prepare project and run test by 
+* `npm install`
+* `cd test`
+* `bower install`
+* `polymer test`
 
 Keep in mind the `polymer test` by default will run the test on all registered 
-browsers in your OS. `-l` key allows to define the browser to test against.
+browsers in your OS. `-l` key allows to define the browser to test against. 
+It is also quite slow and looks like frozen, to see the progress use: 
+
+`polymer test --verbose -l chrome` 
   
 
 
