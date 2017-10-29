@@ -135,7 +135,9 @@ the module on this event.
 ## AMD resolved value 
 The module returns the tag name guessed out of HTML name. 
 
-# live demo 
+# Demo
+ * from `test/` folder run `polymer serve --open`. It will open `test/demo/index.html` 
+ in browser.   
  * `af-branches` web component demo page(TBD)
  * This project `test-component` demo page on CDN (TBD) 
  
@@ -153,7 +155,7 @@ The module returns the tag name guessed out of HTML name.
   
 # test
 ## manual test
-Oen `test/demo/index.html` and open in browser
+Open `test/demo/index.html` and run in browser
 ( IntelliJ IDEA allows to "open in browser" opened html, ALT-F2 on Windows)
 
 ## Test Automation
