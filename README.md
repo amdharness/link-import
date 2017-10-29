@@ -138,8 +138,7 @@ The module returns the tag name guessed out of HTML name.
 # Demo
  * from `test/` folder run `polymer serve --open`. It will open `test/demo/index.html` 
  in browser.   
- * `af-branches` web component demo page(TBD)
- * This project `test-component` demo page on CDN (TBD) 
+ * This project `test-component` [demo page on CDN](http://cdn.xml4jquery.com/ajax/libs/AmdHarness/link-import/test/demo/index.html) 
  
 # Compatibility
  * For now it is tested against Dojo Toolkit 1.x AMD loader.

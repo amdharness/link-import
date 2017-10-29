@@ -21,14 +21,14 @@
                             [ { name: "webcomponentsjs", location: webcomponent_root }
                             , { name: "polymer", location: polymer_root }
                             ]
-                        , aliases:  [ [ "link-import"  , "/components/link-import/link-import.js"]
+                        , aliases:  [ [ "link-import"  , isLocal ? "/components/link-import/link-import.js" : "../../link-import.js" ]
                                     , [ /(vaadin-)(.*)/, (m,x,y)=>`${vaadin_root}/${x}${y}`   ]
                                     , [ /(iron-)(.*)/  , (m,x,y)=>`${iron_root}/${x}${y}`     ]
                                     ]
                         , deps: [ "webcomponentsjs/webcomponents-lite" ] // common for all pages
                         };
     </script>
-    <script src="../../dojo/dojo.js"></script>
+    <script src="../bower_components/dojo/dojo.js"></script>
     <script>
 require([   "link-import!iron-demo-helpers/demo-pages-shared-styles.html|onload"
         ,   "link-import!iron-demo-helpers/demo-snippet.html"
