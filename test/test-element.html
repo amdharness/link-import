@@ -1,36 +1,48 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<!--<link rel="import" href="../polymer/polymer-element.html">-->
+<!-- link import moved into define() -->
 
 <dom-module id="test-element">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
+    </template>
 
-  <script>
-    /**
-     * `test-element`
-     * sample of WebComponent
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class TestElement extends Polymer.Element {
-      static get is() { return 'test-element'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'test-element'
-          }
-        };
-      }
-    }
+    <script>
+        const NAME = 'test-element'
+        define( NAME
+            , [ "link-import!polymer/polymer-element.html" ]
+            , () =>
+            {
 
-    window.customElements.define(TestElement.is, TestElement);
-  </script>
+                /**
+                 * `test-element`
+                 * sample of WebComponent
+                 *
+                 * @customElement
+                 * @polymer
+                 * @demo demo/index.html
+                 */
+                class TestElement extends Polymer.Element
+                {
+                    static get is() { return 'test-element'; }
+
+                    static get properties()
+                    {
+                        return {
+                            prop1: {
+                                type: String,
+                                value: 'test-element'
+                            }
+                        };
+                    }
+                }
+
+                window.customElements.define( TestElement.is, TestElement );
+            });
+        require([NAME]);
+    </script>
 </dom-module>

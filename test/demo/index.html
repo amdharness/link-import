@@ -12,10 +12,10 @@
     <script>
         let isLocal = ['127.0.0.1','localhost'].includes( location.hostname )
         ,   cdn_root = 'https://cdn.xml4jquery.com/ajax/libs/components'
-        ,   vaadin_root         =isLocal ? '/components'        : `${cdn_root}` // 'https://cdn.vaadin.com/vaadin-elements/latest'
-        ,   webcomponent_root   =isLocal ? "/components/webcomponentsjs"        : `${cdn_root}/webcomponentsjs`
-        ,   polymer_root        =isLocal ? "/components/polymer": `${cdn_root}/polymer`
-        ,   iron_root           =isLocal ? '/components'        : `${cdn_root}` ;
+        ,   vaadin_root         =isLocal ? '/components'                : `${cdn_root}` // 'https://cdn.vaadin.com/vaadin-elements/latest'
+        ,   webcomponent_root   =isLocal ? "/components/webcomponentsjs": `${cdn_root}/webcomponentsjs`
+        ,   polymer_root        =isLocal ? "/components/polymer"        : `${cdn_root}/polymer`
+        ,   iron_root           =isLocal ? '/components'                : `${cdn_root}` ;
         var dojoConfig ={ async: true
                         , packages:
                             [ { name: "webcomponentsjs", location: webcomponent_root }
