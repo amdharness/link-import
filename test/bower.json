@@ -4,9 +4,12 @@
   "main": "test-element.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
+    "iron-ajax": "polymerelements/iron-ajax#^2.0.5",
+    "vaadin-material-theme": "vaadin/vaadin-material-theme#^0.3.0",
+    "vaadin-combo-box": "vaadin/vaadin-combo-box#^3.0.0"
   },
   "devDependencies": {
-    "dojo": "^1.13.0"
+    "dojo": "^1.13.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"

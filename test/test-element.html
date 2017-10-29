@@ -9,13 +9,21 @@
             }
         </style>
         <h2>Hello [[prop1]]!</h2>
+
+        <iron-ajax url="colors.json" last-response="{{colors}}" handle-as="json" auto></iron-ajax>
+        <vaadin-combo-box label="Select Color name" items="[[colors]]" Zitem-value-path="line" Zitem-label-path="line"></vaadin-combo-box>
     </template>
 
     <script>
         const NAME = 'test-element'
         define( NAME
-            , [ "link-import!polymer/polymer-element.html" ]
-            , () =>
+            ,   [   'require'
+                ,   "link-import!polymer/polymer-element.html"
+                ,   "link-import!iron-ajax/iron-ajax.html"
+                ,   "link-import!vaadin-material-theme/vaadin-text-field.html" //,   "link-import!vaadin-valo-theme/vaadin-combo-box.html"
+                ,   "link-import!vaadin-combo-box/vaadin-combo-box.html"
+                ]
+            , (require)=>
             {
 
                 /**
@@ -32,12 +40,11 @@
 
                     static get properties()
                     {
-                        return {
-                            prop1: {
-                                type: String,
-                                value: 'test-element'
-                            }
-                        };
+                        return  {   prop1: {
+                                        type: String,
+                                        value: 'test-element'
+                                    }
+                                };
                     }
                 }
 
