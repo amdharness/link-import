@@ -1,36 +1,55 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<!--<link rel="import" href="../polymer/polymer-element.html">-->
+<!-- link import moved into define() -->
 
 <dom-module id="test-element">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
 
-  <script>
-    /**
-     * `test-element`
-     * sample of WebComponent
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class TestElement extends Polymer.Element {
-      static get is() { return 'test-element'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'test-element'
-          }
-        };
-      }
-    }
+        <iron-ajax url="colors.json" last-response="{{colors}}" handle-as="json" auto></iron-ajax>
+        <vaadin-combo-box label="Select Color name" items="[[colors]]" Zitem-value-path="line" Zitem-label-path="line"></vaadin-combo-box>
+    </template>
 
-    window.customElements.define(TestElement.is, TestElement);
-  </script>
+    <script>
+        const NAME = 'test-element'
+        define( NAME
+            ,   [   'require'
+                ,   "link-import!polymer/polymer-element.html"
+                ,   "link-import!iron-ajax/iron-ajax.html"
+                ,   "link-import!vaadin-material-theme/vaadin-text-field.html" //,   "link-import!vaadin-valo-theme/vaadin-combo-box.html"
+                ,   "link-import!vaadin-combo-box/vaadin-combo-box.html"
+                ]
+            , (require)=>
+            {
+
+                /**
+                 * `test-element`
+                 * sample of WebComponent
+                 *
+                 * @customElement
+                 * @polymer
+                 * @demo demo/index.html
+                 */
+                class TestElement extends Polymer.Element
+                {
+                    static get is() { return 'test-element'; }
+
+                    static get properties()
+                    {
+                        return  {   prop1: {
+                                        type: String,
+                                        value: 'test-element'
+                                    }
+                                };
+                    }
+                }
+
+                window.customElements.define( TestElement.is, TestElement );
+            });
+        require([NAME]);
+    </script>
 </dom-module>

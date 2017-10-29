@@ -4,7 +4,8 @@
     "description":     "link-import! amd plugin for loading WebComponents locally and over CDN in AMD dependencies list and implementation of WebComponent via AMD define()",
     "main":            "link-import.js",
     "scripts":         {
-        "test": "cd test && polymer test -l chrome"
+        "test": "cd test && polymer test -l chrome",
+        "build":"cd test && bower install"
     },
     "repository":      {
         "type": "git",
@@ -28,7 +29,6 @@
     "homepage":        "https://github.com/amdharness/link-import#readme",
     "dependencies":    {},
     "devDependencies": {
-        "dojo":        "^1.13.0",
         "polymer-cli": "^1.5.7"
     }
 }

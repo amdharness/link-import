@@ -5,12 +5,43 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
     <title>test-element demo</title>
+    <script src="../bower_components/marked/marked.min.js"  ></script>
+    <!-- window.marked is not defined in presence of AMD loader.
+        marked-element uses this variable.
+      -->
+    <script>
+        let isLocal = ['127.0.0.1','localhost'].includes( location.hostname )
+        ,   cdn_root = 'https://cdn.xml4jquery.com/ajax/libs/components'
+        ,   vaadin_root         =isLocal ? '/components'                : `${cdn_root}` // 'https://cdn.vaadin.com/vaadin-elements/latest'
+        ,   webcomponent_root   =isLocal ? "/components/webcomponentsjs": `${cdn_root}/webcomponentsjs`
+        ,   polymer_root        =isLocal ? "/components/polymer"        : `${cdn_root}/polymer`
+        ,   iron_root           =isLocal ? '/components'                : `${cdn_root}` ;
+        var dojoConfig ={ async: true
+                        , packages:
+                            [ { name: "webcomponentsjs", location: webcomponent_root }
+                            , { name: "polymer", location: polymer_root }
+                            ]
+                        , aliases:  [ [ "link-import"  , isLocal ? "/components/link-import/link-import.js" : "../../link-import.js" ]
+                                    , [ /(vaadin-)(.*)/, (m,x,y)=>`${vaadin_root}/${x}${y}`   ]
+                                    , [ /(iron-)(.*)/  , (m,x,y)=>`${iron_root}/${x}${y}`     ]
+                                    ]
+                        , deps: [ "webcomponentsjs/webcomponents-lite" ] // common for all pages
+                        };
+    </script>
+    <script src="../bower_components/dojo/dojo.js"></script>
+    <script>
+require([   "link-import!iron-demo-helpers/demo-pages-shared-styles.html|onload"
+        ,   "link-import!iron-demo-helpers/demo-snippet.html"
+        ,   "link-import!../test-element.html"
+        ], (a,b,c,d)=> console.log(` ${a} ${b} ${c} ${d}`) );
+    </script>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- imports commented out and moved to dojoConfig.deps and page require() -->
+    <!--<script src="../../webcomponentsjs/webcomponents-lite.js"></script>-->
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../test-element.html">
+    <!--<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">-->
+    <!--<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">-->
+    <!--<link rel="import" href="../test-element.html">-->
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">

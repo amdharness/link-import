@@ -9,7 +9,7 @@ First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polyme
 ## Viewing Your Element
 
 ```
-$ polymer serve
+$ polymer serve --open
 ```
 
 ## Running Tests
