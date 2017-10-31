@@ -131,12 +131,16 @@ As `af-branches` is implemented with AMD, it will wait for dependencies resolvin
 and registering WebComponent, finally notifying the browser page over 
 `window.customElements.whenDefined` callback. `!whenDefined` suffix will resolve 
 the module on this event.    
+The resolved value will be a module value returned by AMD define callback. 
+
+For `test-element` it is `TestElement` class which could be used for element 
+creation via `new` operator or as a parent for another class. 
 
 ## AMD resolved value 
 The module returns the tag name guessed out of HTML name. 
 
 # Demo
- * from `test/` folder run `polymer serve --open`. It will open `test/demo/index.html` 
+ * from `test/` folder run `rundemo.sh`. It will open `test/demo/index.html` 
  in browser.   
  * This project `test-component` [demo page on CDN](http://cdn.xml4jquery.com/ajax/libs/AmdHarness/link-import/test/demo/index.html) 
  
