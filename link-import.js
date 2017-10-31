@@ -8,10 +8,12 @@ define('link-import', function()
                     ,   orig_name = mid.substring( mid.lastIndexOf('/')+1, mid.lastIndexOf('.') );
                     importHref( url, function()
                     {
-                        if( name.includes('|whenDefined') )// "link-import!iron-demo-helpers/demo-snippet.html|whenDefined"
+                        if( name.includes('|whenDefined') )
                             window.customElements.whenDefined(orig_name)
-                                  .then( ()=>orig_name )
-                                  .then( onload, onError);
+                            .then( function()
+                            {   try{ onload( req( orig_name ) ); }
+                                catch( ex ){   onload(orig_name); }
+                            });
                         else
                             onload( orig_name );
                     }, onError );
