@@ -1,6 +1,6 @@
 {
     "name":            "link-import",
-    "version":         "1.0.2",
+    "version":         "1.0.3",
     "description":     "link-import! amd plugin for loading WebComponents locally and over CDN in AMD dependencies list and implementation of WebComponent via AMD define()",
     "main":            "link-import.js",
     "scripts":         {
