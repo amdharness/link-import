@@ -131,13 +131,18 @@ As `af-branches` is implemented with AMD, it will wait for dependencies resolvin
 and registering WebComponent, finally notifying the browser page over 
 `window.customElements.whenDefined` callback. `!whenDefined` suffix will resolve 
 the module on this event.    
+The resolved value will be a module value returned by AMD define callback. 
+
+For `test-element` it is `TestElement` class which could be used for element 
+creation via `new` operator or as a parent for another class. 
 
 ## AMD resolved value 
 The module returns the tag name guessed out of HTML name. 
 
-# live demo 
- * `af-branches` web component demo page(TBD)
- * This project `test-component` demo page on CDN (TBD) 
+# Demo
+ * from `test/` folder run `rundemo.sh`. It will open `test/demo/index.html` 
+ in browser.   
+ * This project `test-component` [demo page on CDN](http://cdn.xml4jquery.com/ajax/libs/AmdHarness/link-import/test/demo/index.html) 
  
 # Compatibility
  * For now it is tested against Dojo Toolkit 1.x AMD loader.
@@ -153,7 +158,7 @@ The module returns the tag name guessed out of HTML name.
   
 # test
 ## manual test
-Oen `test/demo/index.html` and open in browser
+Open `test/demo/index.html` and run in browser
 ( IntelliJ IDEA allows to "open in browser" opened html, ALT-F2 on Windows)
 
 ## Test Automation
