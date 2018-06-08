@@ -28,7 +28,6 @@
     "homepage":        "https://github.com/amdharness/link-import#readme",
     "dependencies":    {},
     "devDependencies": {
-        "dojo":        "^1.13.0",
-        "polymer-cli": "^1.5.7"
+        "dojo":        "^1.13.0"
     }
 }
