@@ -3,6 +3,10 @@
 [![devDependencies][dev-deps-image]][dev-deps-url]
 [![NPM version][npm-image]][npm-url]
 
+NOTE: Since vulnerable version(0.0.3) of `parsejson` is used only in test, its security warning could be ignored. 
+Bower dependencies are outdated for web-component-tester in favor of NPM. Hence the potential security vulnerability
+could not be fixed in bower. 
+ 
 
 `link-import!` AMD plugin for loading any WebComponents locally or over CDN 
 as AMD dependencies list and implementation of WebComponent via AMD define() 
